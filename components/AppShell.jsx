@@ -1,4 +1,19 @@
-import { IonApp, IonLabel, IonRouterOutlet, setupIonicReact, IonTabs, IonTabBar, IonTabButton, IonIcon  } from '@ionic/react';
+import {
+  IonApp,
+  IonLabel,
+  IonRouterOutlet,
+  setupIonicReact,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonIcon,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonInput,
+} from '@ionic/react';
 import { cog, flash, list } from 'ionicons/icons';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
@@ -13,7 +28,7 @@ import Tabs from './pages/Tabs';
 
 setupIonicReact({});
 
-window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
+window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
   try {
     await StatusBar.setStyle({
       style: status.matches ? Style.Dark : Style.Light,
@@ -24,12 +39,25 @@ window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => 
 const AppShell = () => {
   return (
     <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet id="main">
-          <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/feed" />} exact={true} />
-        </IonRouterOutlet>
-      </IonReactRouter>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Reflect Mobile</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonContent forceOverscroll={false}>
+          <div className="space-y-8 p-8">
+            <div className="bg-gray-200 p-8">spacer</div>
+            <div className="bg-gray-200 p-8">spacer</div>
+            <div className="bg-gray-200 p-8">spacer</div>
+            <div className="bg-gray-200 p-8">spacer</div>
+            <div className="bg-gray-100 p-8">
+              <IonInput className="w-full text-red-500" value="Hello world!" />
+            </div>
+          </div>
+        </IonContent>
+      </IonPage>
     </IonApp>
   );
 };
